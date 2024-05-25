@@ -3,7 +3,7 @@ import { generateToken } from "../services/token.js";
 import { verifyPassword } from "../services/bcrypt.js";
 
 /** Below function will handle the user SignUp  */
-const handleUserSignUp = async (req, res) => {
+const handleUserSignUp = async (req, res, next) => {
   try {
     const body = req?.body ?? {};
     const isUserAlreadyPresent = await getSingleUser({ email: body.email });
@@ -22,15 +22,15 @@ const handleUserSignUp = async (req, res) => {
     const token = generateToken(createdUser);
     return res.status(200).send({ user: createdUser, token });
   } catch (error) {
-    console.error(error);
-    return res
-      .status(error.status || 500)
-      .send({ message: error?.message || "Internal server error" });
+    next({
+      message: error?.message || "Internal server error",
+      status: error.status || 500,
+    });
   }
 };
 
 /** Below function will handle the user login  */
-const handleUserLogin = async (req, res) => {
+const handleUserLogin = async (req, res, next) => {
   try {
     let { email, password } = req?.body ?? {};
     const user = await getSingleUser({ email });
@@ -45,7 +45,12 @@ const handleUserLogin = async (req, res) => {
     } else {
       return res.status(404).json({ message: "User not found" });
     }
-  } catch (error) {}
+  } catch (error) {
+    next({
+      message: error?.message || "Internal server error",
+      status: error.status || 500,
+    });
+  }
 };
 
 export { handleUserSignUp, handleUserLogin };
