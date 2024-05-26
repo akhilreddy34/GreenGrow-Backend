@@ -18,7 +18,7 @@ const getSingleUser = async (filters) => {
 
     return user;
   } catch (error) {
-    console.error(error);
+    console.error(error?.message);
     throw error;
   }
 };
@@ -45,7 +45,7 @@ const createNewUser = async (userData) => {
 
     return await newUser.save();
   } catch (error) {
-    console.error(error);
+    console.error(error?.message);
     throw error;
   }
 };

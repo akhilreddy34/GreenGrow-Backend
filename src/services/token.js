@@ -19,7 +19,8 @@ const generateToken = (
     const token = createToken(expiration, detailsToAddInToken);
     return token;
   } catch (error) {
-    console.error(error);
+    console.error(error?.message);
+    throw error;
   }
 };
 
