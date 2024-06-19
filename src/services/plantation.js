@@ -104,7 +104,9 @@ const getAllPlantations = async (userId) => {
     }
     const filters = { createdBy: new mongoose.Types.ObjectId(userId) };
 
-    return await Plantation.find(filters);
+    return await Plantation.find(filters)
+      .sort({ createdAt: -1 })
+      .populate("milestones");
   } catch (error) {
     console.error(error);
     throw error;
