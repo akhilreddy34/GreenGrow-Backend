@@ -3,6 +3,7 @@ import commonSchema from "./commonSchema.js";
 
 const Milestones = new mongoose.Schema({
   name: { type: String, required: true },
+  points: { type: Number, required: true },
   ...commonSchema.obj,
 });
 

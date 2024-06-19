@@ -1,7 +1,4 @@
-import {
-  getAddressFromLatitudeAndLongitude,
-  getPlantationMilestones,
-} from "../services/util.js";
+import { getAddressFromLatitudeAndLongitude } from "../services/util.js";
 
 const fetchAddressFromLatitudeAndLongitude = async (req, res, next) => {
   try {
@@ -24,16 +21,4 @@ const fetchAddressFromLatitudeAndLongitude = async (req, res, next) => {
   }
 };
 
-const fetchPlantationMilestones = async (req, res, next) => {
-  try {
-    const plantationMilestones = await getPlantationMilestones();
-    return res.status(200).send(plantationMilestones);
-  } catch (error) {
-    next({
-      message: error?.message || "Internal server error",
-      status: error.status || 500,
-    });
-  }
-};
-
-export { fetchAddressFromLatitudeAndLongitude, fetchPlantationMilestones };
+export { fetchAddressFromLatitudeAndLongitude };

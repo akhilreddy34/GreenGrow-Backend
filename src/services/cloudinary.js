@@ -1,10 +1,4 @@
 import { v2 as cloudinary } from "cloudinary";
-const imageUploadOptions = {
-  resource_type: "image",
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-};
 
 /** Below function is used to upload image into cloudinary and get the url after upload
  * @param filePath
@@ -13,10 +7,12 @@ const imageUploadOptions = {
 const uploadImageToCloudinary = async (filePath) => {
   try {
     if (!filePath) throw new Error("file path is missing.");
-    const uploadResult = await cloudinary.uploader.upload(
-      filePath,
-      imageUploadOptions
-    );
+    const uploadResult = await cloudinary.uploader.upload(filePath, {
+      resource_type: "image",
+      cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+      api_key: process.env.CLOUDINARY_API_KEY,
+      api_secret: process.env.CLOUDINARY_API_SECRET,
+    });
     if (uploadResult) return uploadResult.url;
   } catch (error) {
     console.error(error);

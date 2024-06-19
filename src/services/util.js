@@ -1,5 +1,4 @@
 import axios from "axios";
-import Milestones from "../schema/plantationMilestones.js";
 
 /** Below function is used to get the address from the latitude and longitude provided
  * @param latitude, longitude
@@ -23,13 +22,4 @@ const getAddressFromLatitudeAndLongitude = async (latitude, longitude) => {
   }
 };
 
-const getPlantationMilestones = async () => {
-  try {
-    return Milestones.find();
-  } catch (error) {
-    console.error(error?.message);
-    throw new Error(error);
-  }
-};
-
-export { getAddressFromLatitudeAndLongitude, getPlantationMilestones };
+export { getAddressFromLatitudeAndLongitude };
