@@ -41,3 +41,5 @@
 {"level":"info","message":"POST /api/plantation/createNewPlantation","timestamp":"2024-06-19T02:35:07.894Z","userEmail":"akhil1@gmail.com"}
 {"level":"info","message":"POST /api/plantation/createNewPlantation","timestamp":"2024-06-19T02:35:57.001Z","userEmail":"akhil1@gmail.com"}
 {"level":"info","message":"POST /api/plantation/createNewPlantation","timestamp":"2024-06-19T02:36:42.531Z","userEmail":"akhil1@gmail.com"}
+{"level":"info","message":"POST /api/user/signIn","timestamp":"2024-06-19T05:11:41.883Z","userEmail":"N/A"}
+{"level":"info","message":"GET /api/plantation/","timestamp":"2024-06-19T05:11:51.857Z","userEmail":"akhil1@gmail.com"}
