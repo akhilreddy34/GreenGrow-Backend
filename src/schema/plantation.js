@@ -19,13 +19,8 @@ const Plantation = new mongoose.Schema({
         ref: "Milestones",
       },
     ],
-    // validate: {
-    //   validator: function (arr) {
-    //     return arr.length > 1;
-    //   },
-    //   message: "Milestones array should have more than one element.",
-    // },
   },
+  location: { type: String, required: false, default: "" },
   ...commonSchema.obj,
 });
 

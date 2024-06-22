@@ -46,6 +46,7 @@ const createPlantation = async (image, details, userId) => {
     newPlantation.plantationDate = details?.date;
     newPlantation.createdBy = userId;
     newPlantation.points = points;
+    newPlantation.location = details?.location;
 
     /** DELETE THE LOCAL FILE  */
     await fsPromises.unlink(imagePath);
