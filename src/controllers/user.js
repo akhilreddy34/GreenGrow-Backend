@@ -41,7 +41,7 @@ const handleUserLogin = async (req, res, next) => {
       }
       /** create and send login token */
       const token = generateToken(user, process.env.JWT_EXPIRATION_MINUTES);
-      return res.status(200).json({ token });
+      return res.status(200).json({ user, token });
     } else {
       return res.status(404).json({ message: "User not found" });
     }
