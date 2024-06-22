@@ -5,10 +5,12 @@ import Milestones from "../schema/plantationMilestones.js";
 import { fileURLToPath } from "url";
 import path from "path";
 import { promises as fsPromises } from "fs";
+import { updateUser } from "../services/user.js";
 
 /** Below function is used to create new Plantation
  * take image upload to cloudinary
  * take milestones calculate points
+ * update in user collections for points
  * create new plantation
  * @param image , additional details, userId
  * @returns created Plantation
@@ -47,6 +49,9 @@ const createPlantation = async (image, details, userId) => {
 
     /** DELETE THE LOCAL FILE  */
     await fsPromises.unlink(imagePath);
+
+    /** UPDATE IN USER COLLECTION FOR POINTS */
+    await updateUser(userId, { $inc: { points: points } });
 
     return await newPlantation.save();
   } catch (error) {

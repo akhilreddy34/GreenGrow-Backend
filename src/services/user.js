@@ -1,4 +1,5 @@
 import User from "../schema/user.js";
+import mongoose from "mongoose";
 
 /** Below function is responsible to get the single user from DB
  * @param search criteria
@@ -50,4 +51,30 @@ const createNewUser = async (userData) => {
   }
 };
 
-export { getSingleUser, createNewUser };
+const updateUser = async (userId, updateData) => {
+  try {
+    if (!userId) {
+      const error = new Error("userId is invalid");
+      error.status = 500;
+      throw error;
+    }
+
+    if (!updateData || !Object.keys(updateData)?.length) {
+      const error = new Error("user Update data is invalid.");
+      error.status = 500;
+      throw error;
+    }
+
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: new mongoose.Types.ObjectId(userId) },
+      updateData,
+      { new: true }
+    );
+    return updatedUser;
+  } catch (error) {
+    console.error(error?.message);
+    throw error;
+  }
+};
+
+export { getSingleUser, createNewUser, updateUser };

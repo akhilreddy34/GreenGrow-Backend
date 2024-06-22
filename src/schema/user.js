@@ -8,6 +8,8 @@ const User = new mongoose.Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
   isActive: { type: Boolean, default: true },
+  points: { type: Number, default: 0 },
+  profilePictureUrl: { type: String, required: false, default: "" },
   ...commonSchema.obj,
 });
 
