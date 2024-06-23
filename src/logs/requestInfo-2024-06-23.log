@@ -1,0 +1,2 @@
+{"level":"info","message":"PATCH /api/user/editUser?reduceUserPoints=true","timestamp":"2024-06-23T07:41:02.141Z","userEmail":"akhil1@gmail.com"}
+{"level":"info","message":"PATCH /api/user/editUser?reduceUserPoints=false","timestamp":"2024-06-23T07:41:16.534Z","userEmail":"akhil1@gmail.com"}
