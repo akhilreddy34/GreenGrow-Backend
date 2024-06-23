@@ -55,15 +55,6 @@ const createPlantation = async (image, details, userId) => {
     /** UPDATE IN USER COLLECTION FOR POINTS */
     await updateUser(userId, { $inc: { points: points } });
 
-    /** CREATE NEW FORUM POST*/
-    const newForumPost = new Forum();
-    newForumPost.title = details?.treeName;
-    newForumPost.author = userId;
-    newForumPost.description = "";
-    newForumPost.imageUrls = [cloudinaryUrl];
-    newForumPost.createdBy = userId;
-    await newForumPost.save();
-
     return await newPlantation.save();
   } catch (error) {
     console.error(error);
