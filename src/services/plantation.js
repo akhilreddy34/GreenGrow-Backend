@@ -6,6 +6,7 @@ import { fileURLToPath } from "url";
 import path from "path";
 import { promises as fsPromises } from "fs";
 import { updateUser } from "../services/user.js";
+import Forum from "../schema/forum.js";
 
 /** Below function is used to create new Plantation
  * take image upload to cloudinary
@@ -53,6 +54,15 @@ const createPlantation = async (image, details, userId) => {
 
     /** UPDATE IN USER COLLECTION FOR POINTS */
     await updateUser(userId, { $inc: { points: points } });
+
+    /** CREATE NEW FORUM POST*/
+    const newForumPost = new Forum();
+    newForumPost.title = details?.treeName;
+    newForumPost.author = userId;
+    newForumPost.description = "";
+    newForumPost.imageUrls = [cloudinaryUrl];
+    newForumPost.createdBy = userId;
+    await newForumPost.save();
 
     return await newPlantation.save();
   } catch (error) {
